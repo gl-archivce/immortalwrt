@@ -222,3 +222,14 @@ define Device/glinet_gl-mt2500
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-gl-metadata
 endef
 TARGET_DEVICES += glinet_gl-mt2500
+
+define Device/cmcc_rax3000m-emmc
+  DEVICE_VENDOR := CMCC
+  DEVICE_MODEL := RAX3000M-EMMC
+  DEVICE_DTS := mt7981-cmcc-rax3000m-emmc
+  SUPPORTED_DEVICES := cmcc,rax3000m-emmc
+  DEVICE_DTS_DIR := $(DTS_DIR)/mediatek
+  DEVICE_PACKAGES := mkf2fs kmod-mmc kmod-fs-f2fs gdisk
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+endef
+TARGET_DEVICES += cmcc_rax3000m-emmc

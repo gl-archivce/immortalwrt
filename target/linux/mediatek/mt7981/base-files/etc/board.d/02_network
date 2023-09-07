@@ -22,8 +22,11 @@ mediatek_setup_interfaces()
 	*2500wan-p5*)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan
 		;;
+	*rax3000m*)
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" eth1
+		;;
 	*mt3000*|\
-	*x3000*|\
+	*x3000|\
 	*xe3000*|\
 	*mt2500*)
 		ucidef_set_interfaces_lan_wan eth1 eth0
@@ -34,6 +37,16 @@ mediatek_setup_interfaces()
 	esac
 }
 
+mtk_factory_read()
+{
+	dd if=/dev/mmcblk0p2 of=/lib/firmware/MT7981_iPAiLNA_EEPROM.bin
+	dd if=/dev/mmcblk0p2 of=/lib/firmware/MT7981_ePAeLNA_EEPROM.bin
+	local part=`blkid -t PARTLABEL=factory -o device`
+	local wifi_mac=$(get_mac_binary $part 4)
+	wan_mac="$(macaddr_add $wifi_mac -2)"
+	lan_mac="$(macaddr_add $wifi_mac -1)"
+}
+
 mediatek_setup_macs()
 {
 	local board="$1"
@@ -42,6 +55,9 @@ mediatek_setup_macs()
 	local wan_mac=""
 
 	case $board in
+	*rax3000m-emmc)
+		mtk_factory_read
+		;;
 	*mt3000*)
 		wan_mac=$(mtd_get_mac_binary $part_name 0x0a)
 		lan_mac=$(macaddr_add "$wan_mac" 1)
@@ -51,7 +67,7 @@ mediatek_setup_macs()
 		lan_mac=$(macaddr_add "$wan_mac" 1)
 		;;
 	*xe3000*|\
-	*x3000*)
+	*x3000)
 		wan_mac=$(get_mac_binary /dev/mmcblk0p3 0x0a)
 		lan_mac=$(macaddr_add "$wan_mac" 1)
 		;;
