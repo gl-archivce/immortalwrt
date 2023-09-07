@@ -1,0 +1,18 @@
+---
+target: ipq807x
+subtarget: ipq60xx
+feeds:
+  - name: ipq807x
+    path: ../../feeds/ipq807x
+  - name: gl_feed_common
+    uri: https://github.com/gl-inet/gl-feeds.git
+    branch: common
+  - name: luci
+    uri: https://github.com/openwrt/luci.git
+    revision: 1c3b32dc1bec15e3076a447762b1c4f94eb75fb7
+
+include:
+  - wifi-ax
+
+packages:
+  - wget-ssl

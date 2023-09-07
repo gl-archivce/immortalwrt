@@ -1,0 +1,38 @@
+---
+description: Add the glinet dependencies for the GL.iNET X3000
+
+feeds:
+  - name: mt7981_private
+    uri: http://192.168.17.119:888/gl.sdk4.0/gl.router/mt7981-feeds.git
+    revision: f527a1a68e61ea3dd3b47e251aeb42ec200ef6db
+  - name: glinet
+    uri: http://192.168.17.119:888/gl.sdk4.0/gl.router/gl-sdk4-collect.git
+    revision: beec8484d5fa4be325f9d602e0ac3e46c7bf3113
+
+packages:
+  - kmod-gl-pcie-modem
+  - kmod-gl-sdk4-black_white_list
+  - gl-sdk4-led
+  - gl-sdk4-adguardhome
+  - gl-sdk4-timer
+  - gl-sdk4-igmp
+  - gl-sdk4-mwan3
+  - gl-sdk4-passthrough
+  - gl-sdk4-sms-forward
+  - gl-sdk4-2b
+  - gl-sdk4-ui-hwnat
+  - gl-sdk4-ui-netnat
+  - gl-sdk4-ui-modemsignallog
+
+diffconfig: |
+  CONFIG_PACKAGE_gl-sdk4-ui-btnsettings=n
+  CONFIG_PACKAGE_gl-sdk4-switch-button=n
+  CONFIG_BUSYBOX_CUSTOM=y
+  CONFIG_BUSYBOX_CONFIG_FEATURE_TOP_INTERACTIVE=y
+  CONFIG_BUSYBOX_CONFIG_FEATURE_TOP_SMP_CPU=y
+  CONFIG_BUSYBOX_CONFIG_FEATURE_TOP_DECIMALS=y
+  CONFIG_BUSYBOX_CONFIG_FEATURE_TOP_SMP_PROCESS=y
+  CONFIG_BUSYBOX_CONFIG_FEATURE_TOPMEM=y
+  CONFIG_PACKAGE_coreutils=y
+  CONFIG_PACKAGE_coreutils-sleep=y
+  CONFIG_BUSYBOX_CONFIG_TIMEOUT=y

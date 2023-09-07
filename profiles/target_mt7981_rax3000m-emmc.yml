@@ -1,0 +1,52 @@
+---
+profile: cmcc_rax3000m-emmc
+target: mediatek
+subtarget: mt7981
+description: Build image for the CMCC RAX3000M-EMMC
+
+feeds:
+  - name: gl_feed_common
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 714602b5f00ad9b8ab63365cd31a745aa3ad6eb6
+  - name: gl_feed_21_02
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 44d2d82eceb5e45c519f68f1838582ddbfe83a86
+  - name: gl_feed_mtk
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 870323b82e5f802096ed53fcb78cacecebd4b980
+
+packages:
+  - tailscale:gl_feed_common
+  - fwdd
+  - mii_mgr
+  - losetup
+  - mkf2fs
+  - e2fsprogs
+  - blkid
+  - blockdev
+  - kmod-fs-ext4
+  - kmod-fs-f2fs
+  - kmod-fs-vfat
+  - kmod-nls-cp437
+  - regs
+  - switch
+  - mtk-base-files
+  - mtk_factory_rw
+  - ethtool
+  - iwinfo
+  - wireless-tools
+  - gl-sdk4-mtk-wifi-v2
+  - luci-app-mtkwifi
+  - kmod-conninfra-mt7981-ko
+  - kmod-mt-wifi-mt7981-ko
+  - kmod-warp-mt7981-ko
+  - kmod-mediatek_hnat
+  - luci
+  - 8021xd
+  - kmod-mtfwd
+  - kmod-mtqos
+  - mtkhnat_util
+  - gdisk
+  - mmc-utils
+  - kmod-shortcut-fe
+  - kmod-shortcut-fe-cm

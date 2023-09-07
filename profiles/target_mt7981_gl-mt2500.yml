@@ -1,0 +1,40 @@
+---
+profile: glinet_gl-mt2500
+target: mediatek
+subtarget: mt7981
+description: Build image for the GL.iNET MT2500
+
+feeds:
+  - name: gl_feed_common
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 2de0513c3fd1896c3c6351927031477ddd9d0830
+  - name: gl_feed_21_02
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 44d2d82eceb5e45c519f68f1838582ddbfe83a86
+
+packages:
+  - tailscale:gl_feed_common
+  - fwdd
+  - mii_mgr
+  - losetup
+  - mkf2fs
+  - e2fsprogs
+  - blkid
+  - blockdev
+  - kmod-fs-ext4
+  - kmod-fs-f2fs
+  - kmod-fs-vfat
+  - kmod-nls-cp437
+  - regs
+  - switch
+  - mtk-base-files
+  - mtk_factory_rw
+  - ethtool
+  - kmod-mediatek_hnat
+  - kmod-mtfwd
+  - kmod-mtqos
+  - mtkhnat_util
+  - gdisk
+  - mmc-utils
+  - kmod-shortcut-fe
+  - kmod-shortcut-fe-cm

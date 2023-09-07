@@ -1,0 +1,42 @@
+---
+profile: glinet_gl-x3000
+target: mediatek
+subtarget: mt7981
+description: Build image for the GL.iNET X3000
+
+feeds:
+  - name: gl_feed_common
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: d39ec6a2e436ed03aa037788bc6114810da3ed2f
+  - name: gl_feed_21_02
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 68dc5722d4dd9a2f8388998343590be0a8a20b99
+  - name: gl_feed_mtk
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 1629222c11f26bd3fd58da2a0ce827399ddcf53b
+
+packages:
+  - ethtool
+  - iwinfo
+  - mmc-utils
+  - losetup
+  - mkf2fs
+  - blockdev
+  - gdisk
+  - wireless-tools
+  - gl-sdk4-mtk-wifi-v2
+  - luci-app-mtkwifi
+  - kmod-conninfra-mt7981-ko
+  - kmod-mt-wifi-mt7981-ko
+  - kmod-warp-mt7981-ko
+  - kmod-mediatek_hnat
+  - kmod-gl-sdk4-fan
+  - kmod-shortcut-fe
+  - kmod-shortcut-fe-cm
+  - mii_mgr
+  - mtkhnat_util
+  - regs
+  - 8021xd
+  - fwdd
+  - kmod-mtfwd
+  - kmod-mtqos

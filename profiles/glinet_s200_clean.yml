@@ -1,0 +1,74 @@
+---
+profile: glinet_gl-s200-nor-nand
+target: ath79
+subtarget: nand
+description: Build image for the GL.iNET S200
+feeds:
+  - name: gl_feeds_common
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: d74ca071d70925f58c5d7b14c494dc2b2f2f41cf
+  - name: gl_feeds_21_02_2
+    uri: https://github.com/gl-inet/gl-feeds.git
+    revision: 68dc5722d4dd9a2f8388998343590be0a8a20b99
+
+packages:
+  - kmod-gl-sdk4-hw-info
+  - wpad-openssl
+  - wget-ssl
+  - dnsmasq-full
+  - mwan3
+  - iwinfo
+  - iptables-mod-nfqueue
+  - kmod-ipt-raw6
+  - kmod-ip6tables-extra
+  - ip6tables-extra
+  - ot-br-posix
+
+diffconfig: |
+  CONFIG_PACKAGE_kmod-fast-classifier=n
+  CONFIG_PACKAGE_kmod-shortcut-fe-cm=n
+  CONFIG_PACKAGE_kmod-shortcut-fe=n
+  CONFIG_SIGNATURE_CHECK=n
+  CONFIG_PACKAGE_dnsmasq=n
+  CONFIG_PACKAGE_wpad-basic=n
+  CONFIG_PACKAGE_wpad=n
+  CONFIG_BUSYBOX_CUSTOM=y
+  CONFIG_BUSYBOX_CONFIG_FEATURE_FLOAT_SLEEP=y
+  CONFIG_BUSYBOX_CONFIG_FLOAT_DURATION=y
+  CONFIG_NGINX_HTTP_CHARSET=n
+  CONFIG_NGINX_HTTP_GZIP=n
+  CONFIG_NGINX_HTTP_SSI=n
+  CONFIG_NGINX_HTTP_USERID=n
+  CONFIG_NGINX_HTTP_ACCESS=n
+  CONFIG_NGINX_HTTP_AUTH_BASIC=n
+  CONFIG_NGINX_HTTP_AUTOINDEX=n
+  CONFIG_NGINX_HTTP_GEO=n
+  CONFIG_NGINX_HTTP_MAP=n
+  CONFIG_NGINX_HTTP_SPLIT_CLIENTS=n
+  CONFIG_NGINX_HTTP_REFERER=n
+  CONFIG_NGINX_HTTP_REWRITE=n
+  CONFIG_NGINX_HTTP_FASTCGI=n
+  CONFIG_NGINX_HTTP_SCGI=n
+  CONFIG_NGINX_HTTP_MEMCACHED=n
+  CONFIG_NGINX_HTTP_LIMIT_CONN=n
+  CONFIG_NGINX_HTTP_LIMIT_REQ=n
+  CONFIG_NGINX_HTTP_EMPTY_GIF=n
+  CONFIG_NGINX_HTTP_BROWSER=n
+  CONFIG_NGINX_HTTP_UPSTREAM_HASH=n
+  CONFIG_NGINX_HTTP_UPSTREAM_IP_HASH=n
+  CONFIG_NGINX_HTTP_UPSTREAM_LEAST_CONN=n
+  CONFIG_NGINX_HTTP_UPSTREAM_KEEPALIVE=n
+  CONFIG_NGINX_HTTP_CACHE=n
+  CONFIG_NGINX_NAXSI=n
+  CONFIG_NGINX_HEADERS_MORE=n
+  CONFIG_LIBCURL_MBEDTLS=n
+  CONFIG_LIBCURL_OPENSSL=y
+  CONFIG_OPENSSL_OPTIMIZE_SPEED=y
+  CONFIG_PACKAGE_wpad-basic-wolfssl=n
+  CONFIG_PACKAGE_nginx-ssl-util=n
+  CONFIG_PACKAGE_kmod-crypto-hash=n
+  CONFIG_PACKAGE_kmod-crypto-kpp=n
+  CONFIG_PACKAGE_kmod-usb-serial-ch341=n
+  CONFIG_PACKAGE_libustream-wolfssl=n
+  CONFIG_IPTABLES_NFTABLES=y
+  CONFIG_OTBR_TTY_DRIVER_CH343=y
