@@ -2,4 +2,7 @@ src-git-full packages https://github.com/immortalwrt/packages.git;openwrt-21.02
 src-git-full luci https://github.com/immortalwrt/luci.git;openwrt-21.02
 src-git-full routing https://github.com/openwrt/routing.git;openwrt-21.02
 src-git-full telephony https://github.com/openwrt/telephony.git;openwrt-21.02
-src-git mtk_openwrt_feed https://git01.mediatek.com/openwrt/feeds/mtk-openwrt-feeds.git^df3fc79
+src-git mtk_openwrt_feed https://github.com/GainStrongService/mtk-openwrt-feeds.git^df3fc79
+src-git gl_feed_common https://github.com/gl-archivce/gl-feeds.git^85deb92
+src-git gl_feed_21_02 https://github.com/gl-inet/gl-feeds.git^44d2d82
+src-git gl_feed_mtk https://github.com/gl-inet/gl-feeds.git^870323b
