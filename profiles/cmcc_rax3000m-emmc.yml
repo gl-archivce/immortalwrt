@@ -46,7 +46,6 @@ packages:
   - gl-sdk4-utils
   - gl-sdk4-dns
   - gl-sdk4-timer
-  - gl-sdk4-tor
   - gl-sdk4-kmwan
   - gl-sdk4-zerotier
   - gl-sdk4-tailscale
@@ -91,7 +90,6 @@ packages:
   - gl-sdk4-ui-overview
   - gl-sdk4-ui-timedtask
   - gl-sdk4-ui-netnat
-  - gl-sdk4-ui-torview
   - gl-sdk4-ui-multiwan
   - gl-sdk4-ui-parentalcontrol
   - gl-sdk4-ui-zerotierview
