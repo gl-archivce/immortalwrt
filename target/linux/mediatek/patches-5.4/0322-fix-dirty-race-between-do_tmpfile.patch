@@ -1,7 +1,7 @@
 diff --git a/fs/ubifs/dir.c b/fs/ubifs/dir.c
 --- a/fs/ubifs/dir.c
 +++ b/fs/ubifs/dir.c
-@@ -356,6 +356,32 @@ out_budg:
+@@ -356,6 +356,32 @@ static int ubifs_create(struct inode *dir, struct dentry *dentry, umode_t mode,
  	return err;
  }
  
@@ -43,7 +43,7 @@ diff --git a/fs/ubifs/dir.c b/fs/ubifs/dir.c
  	int err, instantiated = 0;
  	struct fscrypt_name nm;
  
-@@ -426,18 +452,18 @@ static int do_tmpfile(struct inode *dir, struct dentry *dentry,
+@@ -426,11 +452,11 @@ static int do_tmpfile(struct inode *dir, struct dentry *dentry,
  	instantiated = 1;
  	mutex_unlock(&ui->ui_mutex);
  
@@ -56,7 +56,8 @@ diff --git a/fs/ubifs/dir.c b/fs/ubifs/dir.c
 +	unlock_2_inodes(dir, inode);
  
  	ubifs_release_budget(c, &req);
- 
+ 	fscrypt_free_filename(&nm);
+@@ -438,7 +464,7 @@ static int do_tmpfile(struct inode *dir, struct dentry *dentry,
  	return 0;
  
  out_cancel:
@@ -65,7 +66,7 @@ diff --git a/fs/ubifs/dir.c b/fs/ubifs/dir.c
  out_inode:
  	make_bad_inode(inode);
  	if (!instantiated)
-@@ -672,32 +698,6 @@ static int ubifs_dir_release(struct inode *dir, struct file *file)
+@@ -673,32 +699,6 @@ static int ubifs_dir_release(struct inode *dir, struct file *file)
  	return 0;
  }
  
