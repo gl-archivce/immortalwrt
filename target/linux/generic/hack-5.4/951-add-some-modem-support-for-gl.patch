@@ -1,8 +1,6 @@
-Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
-===================================================================
---- linux-5.4.211.orig/drivers/net/usb/qmi_wwan.c
-+++ linux-5.4.211/drivers/net/usb/qmi_wwan.c
-@@ -507,6 +507,7 @@ static const u8 default_modem_addr[ETH_A
+--- a/drivers/net/usb/qmi_wwan.c
++++ b/drivers/net/usb/qmi_wwan.c
+@@ -507,6 +507,7 @@ static const u8 default_modem_addr[ETH_ALEN] = {0x02, 0x50, 0xf3};
  
  static const u8 buggy_fw_addr[ETH_ALEN] = {0x00, 0xa0, 0xc6, 0x00, 0x00, 0x00};
  
@@ -10,7 +8,7 @@ Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
  /* Make up an ethernet header if the packet doesn't have one.
   *
   * A firmware bug common among several devices cause them to send raw
-@@ -801,6 +802,11 @@ static int qmi_wwan_bind(struct usbnet *
+@@ -801,6 +802,11 @@ static int qmi_wwan_bind(struct usbnet *dev, struct usb_interface *intf)
  	}
  	dev->net->netdev_ops = &qmi_wwan_netdev_ops;
  	dev->net->sysfs_groups[0] = &qmi_wwan_sysfs_attr_group;
@@ -22,7 +20,7 @@ Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
  err:
  	return status;
  }
-@@ -891,7 +897,7 @@ static const struct driver_info	qmi_wwan
+@@ -891,7 +897,7 @@ static const struct driver_info	qmi_wwan_info = {
  	.bind		= qmi_wwan_bind,
  	.unbind		= qmi_wwan_unbind,
  	.manage_power	= qmi_wwan_manage_power,
@@ -31,7 +29,7 @@ Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
  };
  
  static const struct driver_info	qmi_wwan_info_quirk_dtr = {
-@@ -938,6 +944,21 @@ static const struct driver_info	qmi_wwan
+@@ -938,6 +944,21 @@ static const struct driver_info	qmi_wwan_info_quirk_dtr = {
  	.driver_info = (unsigned long)&qmi_wwan_info_quirk_dtr
  
  static const struct usb_device_id products[] = {
@@ -53,7 +51,7 @@ Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
  	/* 1. CDC ECM like devices match on the control interface */
  	{	/* Huawei E392, E398 and possibly others sharing both device id and more... */
  		USB_VENDOR_AND_INTERFACE_INFO(HUAWEI_VENDOR_ID, USB_CLASS_VENDOR_SPEC, 1, 9),
-@@ -1041,8 +1062,6 @@ static const struct usb_device_id produc
+@@ -1041,8 +1062,6 @@ static const struct usb_device_id products[] = {
  		USB_DEVICE_AND_INTERFACE_INFO(0x03f0, 0x581d, USB_CLASS_VENDOR_SPEC, 1, 7),
  		.driver_info = (unsigned long)&qmi_wwan_info,
  	},
@@ -62,7 +60,7 @@ Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
  	{QMI_MATCH_FF_FF_FF(0x2c7c, 0x0512)},	/* Quectel EG12/EM12 */
  	{QMI_MATCH_FF_FF_FF(0x2c7c, 0x0620)},	/* Quectel EM160R-GL */
  	{QMI_MATCH_FF_FF_FF(0x2c7c, 0x0800)},	/* Quectel RM500Q-GL */
-@@ -1400,7 +1419,6 @@ static const struct usb_device_id produc
+@@ -1408,7 +1427,6 @@ static const struct usb_device_id products[] = {
  	{QMI_GOBI_DEVICE(0x05c6, 0x9225)},	/* Sony Gobi 2000 Modem device (N0279, VU730) */
  	{QMI_GOBI_DEVICE(0x05c6, 0x9245)},	/* Samsung Gobi 2000 Modem device (VL176) */
  	{QMI_GOBI_DEVICE(0x03f0, 0x251d)},	/* HP Gobi 2000 Modem device (VP412) */
@@ -70,11 +68,9 @@ Index: linux-5.4.211/drivers/net/usb/qmi_wwan.c
  	{QMI_FIXED_INTF(0x05c6, 0x9215, 4)},	/* Quectel EC20 Mini PCIe */
  	{QMI_GOBI_DEVICE(0x05c6, 0x9265)},	/* Asus Gobi 2000 Modem device (VR305) */
  	{QMI_GOBI_DEVICE(0x05c6, 0x9235)},	/* Top Global Gobi 2000 Modem device (VR306) */
-Index: linux-5.4.211/drivers/usb/serial/option.c
-===================================================================
---- linux-5.4.211.orig/drivers/usb/serial/option.c
-+++ linux-5.4.211/drivers/usb/serial/option.c
-@@ -573,6 +573,18 @@ static void option_instat_callback(struc
+--- a/drivers/usb/serial/option.c
++++ b/drivers/usb/serial/option.c
+@@ -594,6 +594,18 @@ static void option_instat_callback(struct urb *urb);
  #define WETELECOM_PRODUCT_6802			0x6802
  #define WETELECOM_PRODUCT_WMD300		0x6803
  
@@ -90,11 +86,11 @@ Index: linux-5.4.211/drivers/usb/serial/option.c
 +#define NEOWAY_PRODUCT_N720                     0x8243
 +
 +
- 
- /* Device flags */
- 
-@@ -593,6 +605,33 @@ static void option_instat_callback(struc
- 
+ /* OPPO products */
+ #define OPPO_VENDOR_ID				0x22d9
+ #define OPPO_PRODUCT_R11			0x276c
+@@ -636,6 +648,33 @@ static const struct option_blacklist_info longsung_u9300_blacklist = {
+ };
  
  static const struct usb_device_id option_ids[] = {
 +#if 1 //Added by Quectel
@@ -127,7 +123,7 @@ Index: linux-5.4.211/drivers/usb/serial/option.c
  	{ USB_DEVICE(OPTION_VENDOR_ID, OPTION_PRODUCT_COLT) },
  	{ USB_DEVICE(OPTION_VENDOR_ID, OPTION_PRODUCT_RICOLA) },
  	{ USB_DEVICE(OPTION_VENDOR_ID, OPTION_PRODUCT_RICOLA_LIGHT) },
-@@ -2190,6 +2229,9 @@ static struct usb_serial_driver option_1
+@@ -2305,6 +2344,9 @@ static struct usb_serial_driver option_1port_device = {
  #ifdef CONFIG_PM
  	.suspend           = usb_wwan_suspend,
  	.resume            = usb_wwan_resume,
@@ -137,7 +133,7 @@ Index: linux-5.4.211/drivers/usb/serial/option.c
  #endif
  };
  
-@@ -2212,6 +2254,7 @@ static int option_probe(struct usb_seria
+@@ -2327,6 +2369,7 @@ static int option_probe(struct usb_serial *serial,
  {
  	struct usb_interface_descriptor *iface_desc =
  				&serial->interface->cur_altsetting->desc;
@@ -145,7 +141,7 @@ Index: linux-5.4.211/drivers/usb/serial/option.c
  	unsigned long device_flags = id->driver_info;
  
  	/* Never bind to the CD-Rom emulation interface	*/
-@@ -2233,9 +2276,98 @@ static int option_probe(struct usb_seria
+@@ -2348,9 +2391,98 @@ static int option_probe(struct usb_serial *serial,
  	if (device_flags & NUMEP2 && iface_desc->bNumEndpoints != 2)
  		return -ENODEV;
  
@@ -247,11 +243,9 @@ Index: linux-5.4.211/drivers/usb/serial/option.c
  	return 0;
  }
  
-Index: linux-5.4.211/drivers/usb/serial/qcserial.c
-===================================================================
---- linux-5.4.211.orig/drivers/usb/serial/qcserial.c
-+++ linux-5.4.211/drivers/usb/serial/qcserial.c
-@@ -88,7 +88,6 @@ static const struct usb_device_id id_tab
+--- a/drivers/usb/serial/qcserial.c
++++ b/drivers/usb/serial/qcserial.c
+@@ -88,7 +88,6 @@ static const struct usb_device_id id_table[] = {
  	{USB_DEVICE(0x03f0, 0x241d)},	/* HP Gobi 2000 QDL device (VP412) */
  	{USB_DEVICE(0x03f0, 0x251d)},	/* HP Gobi 2000 Modem device (VP412) */
  	{USB_DEVICE(0x05c6, 0x9214)},	/* Acer Gobi 2000 QDL device (VP413) */
@@ -259,11 +253,9 @@ Index: linux-5.4.211/drivers/usb/serial/qcserial.c
  	{USB_DEVICE(0x05c6, 0x9264)},	/* Asus Gobi 2000 QDL device (VR305) */
  	{USB_DEVICE(0x05c6, 0x9265)},	/* Asus Gobi 2000 Modem device (VR305) */
  	{USB_DEVICE(0x05c6, 0x9234)},	/* Top Global Gobi 2000 QDL device (VR306) */
-Index: linux-5.4.211/drivers/usb/serial/usb_wwan.c
-===================================================================
---- linux-5.4.211.orig/drivers/usb/serial/usb_wwan.c
-+++ linux-5.4.211/drivers/usb/serial/usb_wwan.c
-@@ -478,6 +478,20 @@ static struct urb *usb_wwan_setup_urb(st
+--- a/drivers/usb/serial/usb_wwan.c
++++ b/drivers/usb/serial/usb_wwan.c
+@@ -478,6 +478,20 @@ static struct urb *usb_wwan_setup_urb(struct usb_serial_port *port,
  			  usb_sndbulkpipe(serial->dev, endpoint) | dir,
  			  buf, len, callback, ctx);
  
