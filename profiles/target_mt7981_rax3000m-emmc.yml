@@ -6,7 +6,7 @@ description: Build image for the CMCC RAX3000M-EMMC
 
 feeds:
   - name: gl_feed_common
-    uri: https://github.com/gl-archivce/gl-feeds.git
+    uri: https://github.com/gl-imm/gl-feeds.git
     revision: 85deb92fffc87d81d2146329c9df2e98bca481a7
   - name: gl_feed_21_02
     uri: https://github.com/gl-inet/gl-feeds.git
